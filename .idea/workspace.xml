@@ -6,7 +6,35 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f628576a-9b4b-459b-97c3-c85b65f690bb" name="Default Changelist" comment="" />
+    <list default="true" id="f628576a-9b4b-459b-97c3-c85b65f690bb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_17_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_17_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBClient/EJBClient.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EJBClient/EJBClient.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBClient/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/EJBClient/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBClient/src/main/java/RemoteEJBClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/EJBClient/src/main/java/RemoteEJBClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBClient/target/EJBClient-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/EJBClient/target/EJBClient-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBClient/target/classes/RemoteEJBClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/EJBClient/target/classes/RemoteEJBClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBClient/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EJBClient/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBClient/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/EJBClient/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/EJBService.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EJBService/EJBService.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/EJBService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/src/main/java/Stateless/CalculatorBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/EJBService/src/main/java/Stateless/LogBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/src/main/java/Stateless/RemoteCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/EJBService/src/main/java/Stateless/LogSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/target/EJBService-1.0-SNAPSHOT-tests.jar" beforeDir="false" afterPath="$PROJECT_DIR$/EJBService/target/EJBService-1.0-SNAPSHOT-tests.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/target/EJBService-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/EJBService/target/EJBService-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/target/classes/Stateless/CalculatorBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/target/classes/Stateless/RemoteCalculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EJBService/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/EJBService/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EJBService/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/EJBService/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/EJBService_jar/EJBService.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/EJBService_jar/EJBService.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +47,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="291oBSwZutxiKK2C0nbCH6lSb8Z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -27,26 +58,28 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../factelect_xmlsigner_distrib" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15332031" />
     <property name="project.structure.side.proportion" value="0.35192308" />
-    <property name="settings.editor.selected.configurable" value="xml.catalog" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Stateless" />
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Mega\Trabajo\Trabajo Atos-Antel\Proyectos\EJBServerLog\src\main\resources" />
+      <recent name="C:\Mega\Trabajo\Trabajo Antel\Proyectos\EJB4\EJBClient\src\main" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Mega\Trabajo\Trabajo Antel\Proyectos\EJB4\EJBClient\src\main\java" />
       <recent name="C:\Mega\Trabajo\Trabajo Antel\Proyectos\EJB4\EJBClient\src" />
       <recent name="C:\Mega\Trabajo\Trabajo Antel\Proyectos\EJB4\EJBService\src" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Mega\Trabajo\Trabajo Antel\Proyectos\EJB4\EJBClient\src\main" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="Stateless" />
-      <recent name="" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -239,6 +272,15 @@
       <workItem from="1652445128732" duration="8781000" />
       <workItem from="1652457381362" duration="344000" />
       <workItem from="1652458831854" duration="1659000" />
+      <workItem from="1653655214300" duration="1600000" />
+      <workItem from="1653657635620" duration="445000" />
+      <workItem from="1653658092518" duration="62000" />
+      <workItem from="1653658186490" duration="48000" />
+      <workItem from="1655310148855" duration="4475000" />
+      <workItem from="1655314935305" duration="422000" />
+      <workItem from="1655315446013" duration="890000" />
+      <workItem from="1655316439163" duration="5071000" />
+      <workItem from="1655381919277" duration="4033000" />
     </task>
     <servers />
   </component>
@@ -246,10 +288,18 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="-1208" y="88" key="#Project_Structure" timestamp="1655313951555">
+      <screen x="-1600" y="0" width="1600" height="860" />
+    </state>
+    <state x="-1208" y="88" key="#Project_Structure/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655313951555" />
     <state x="223" y="50" width="1089" height="774" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1652446192280">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="50" width="1089" height="774" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1652446192280" />
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1655382686713">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655382686713" />
     <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1652293729526">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -270,54 +320,77 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="349" y="67" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1536.824@0.0.1536.824" timestamp="1652293441808" />
+    <state x="459" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1655310289039">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="459" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655310289039" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1652372335024">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1652372335024" />
-    <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1652456518802">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="-1028" y="161" key="FileChooserDialogImpl" timestamp="1655313440136">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1652456518802" />
-    <state width="746" height="210" key="GridCell.Tab.0.bottom" timestamp="1652457728064">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="-1028" y="161" key="FileChooserDialogImpl/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655313440136" />
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1655394441385">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1652457728064" />
-    <state width="746" height="210" key="GridCell.Tab.0.center" timestamp="1652457728063">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655394441385" />
+    <state width="1877" height="354" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655384465788" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1655394441385">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1652457728063" />
-    <state width="746" height="210" key="GridCell.Tab.0.left" timestamp="1652457728063">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655394441385" />
+    <state width="1877" height="354" key="GridCell.Tab.0.center/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655384465788" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1655394441385">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1652457728063" />
-    <state width="746" height="210" key="GridCell.Tab.0.right" timestamp="1652457728064">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655394441385" />
+    <state width="1877" height="354" key="GridCell.Tab.0.left/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655384465788" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1655394441385">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1652457728064" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1652457166977">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655394441385" />
+    <state width="1877" height="354" key="GridCell.Tab.0.right/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655384465788" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1655394441385">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1652457166977" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1652457166977">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655394441385" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655384164059" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1655394441385">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1652457166977" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1652457166977">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655394441385" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655384164059" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1655394441385">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1652457166977" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1652457166977">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655394441385" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655384164059" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1655394441385">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1652457166977" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655394441385" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655384164059" />
     <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1652292085058">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1652292085058" />
-    <state x="203" y="78" key="SettingsEditor" timestamp="1652452262004">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="-1388" y="81" key="SettingsEditor" timestamp="1655312073919">
+      <screen x="-1600" y="0" width="1600" height="860" />
     </state>
     <state x="203" y="78" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1652452262004" />
+    <state x="-1388" y="81" key="SettingsEditor/0.0.1920.1040/-1600.0.1600.860@-1600.0.1600.860" timestamp="1655312073919" />
+    <state x="254" y="98" key="SettingsEditor/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1655310513083" />
     <state x="366" y="185" key="com.intellij.javaee.MapExternalResourceDialog" timestamp="1652450431110">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -326,10 +399,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="209" y="0" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1652372017683" />
-    <state x="650" y="126" width="672" height="677" key="run.anything.popup" timestamp="1652457386690">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="813" y="159" width="840" height="855" key="run.anything.popup" timestamp="1653658201338">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="650" y="126" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1652457386690" />
+    <state x="813" y="159" width="840" height="855" key="run.anything.popup/0.0.1920.1040/-1600.0.1600.860@0.0.1920.1040" timestamp="1653658201338" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1652294668887">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

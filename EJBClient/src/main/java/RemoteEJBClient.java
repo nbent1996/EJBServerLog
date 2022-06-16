@@ -1,11 +1,13 @@
-import Stateless.CalculatorBean;
-import Stateless.RemoteCalculator;
+import Stateless.LogBean;
+import Stateless.LogSender;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Scanner;
 
 /**
  * A sample program which acts a remote client for a EJB deployed on JBoss EAP server. This program shows how to lookup stateful and
@@ -13,55 +15,98 @@ import java.util.Hashtable;
  *
  * @author Jaikiran Pai
  */
-public class RemoteEJBClient {
+public class RemoteEJBClient extends Thread implements Runnable{
 
+    private String message;
+    private int opcion, msInterval;
+    private boolean state;
+    private static ArrayList<LogSender> logger = new ArrayList();
+    private static RemoteEJBClient rm = null;
     private static final String HTTP = "http";
 
     public static void main(String[] args) throws Exception {
-        // Invoke a stateless bean
-        invokeStatelessBean();
-
-        // Invoke a stateful bean
-        //invokeStatefulBean();
-    }
-
-    /**
-     * Looks up a stateless bean and invokes on it
-     *
-     * @throws NamingException
-     */
-    private static void invokeStatelessBean() throws NamingException {
-        // Let's lookup the remote stateless calculator
-        final RemoteCalculator statelessRemoteCalculator = lookupRemoteStatelessCalculator();
-        System.out.println("Obtained a remote stateless calculator for invocation");
-        // invoke on the remote calculator
-        int a = 204;
-        int b = 340;
-        System.out.println("Adding " + a + " and " + b + " via the remote stateless calculator deployed on the server");
-        int sum = statelessRemoteCalculator.add(a, b);
-        System.out.println("Remote calculator returned sum = " + sum);
-        if (sum != a + b) {
-            throw new RuntimeException("Remote stateless calculator returned an incorrect sum " + sum + " ,expected sum was "
-                + (a + b));
+        boolean bandera = false;
+        RemoteEJBClient rEJB = tomarDatos(); /*Tomo datos*/
+        if(!bandera){
+        logger.add(lookupLogSenderCORE()); /*Creo la conexion al CORE*/
+        logger.add(lookupLogSenderEXT()); /*Creo la conexion al EXT*/
+        bandera = true;
         }
-        // try one more invocation, this time for subtraction
-        int num1 = 3434;
-        int num2 = 2332;
-        System.out.println("Subtracting " + num2 + " from " + num1
-            + " via the remote stateless calculator deployed on the server");
-        int difference = statelessRemoteCalculator.subtract(num1, num2);
-        System.out.println("Remote calculator returned difference = " + difference);
-        if (difference != num1 - num2) {
-            throw new RuntimeException("Remote stateless calculator returned an incorrect difference " + difference
-                + " ,expected difference was " + (num1 - num2));
+        Thread tr = new Thread(rEJB);
+        tr.start();
+        while(rEJB.state){
+            System.out.println("Presione 1 si desea frenar el hilo");
+            int opcion = new Scanner(System.in).nextInt();
+            if(opcion==1){
+                rEJB.state=false;
+            }
         }
     }
-    private static RemoteCalculator lookupRemoteStatelessCalculator() throws NamingException {
+    public RemoteEJBClient(int msInterval, String message, boolean state, int opcion){
+        this.msInterval = msInterval;
+        this.message = message;
+        this.state = state;
+        this.opcion = opcion;
+    }
+
+    /*Generar un nuevo hilo*/
+    @Override
+    public void run(){
+            while (state) {
+                try {
+                logger.get(opcion-1).infiniteLog(message);
+                sleep(msInterval*1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+    }
+    private static RemoteEJBClient tomarDatos() throws NamingException {
+            int opcion, msInterval;
+            String message;
+            boolean state;
+            System.out.println("Seleccione instancia:\n" +
+                    "1 - Master.\n" +
+                    "2 - Slave");
+            opcion = new Scanner(System.in).nextInt();
+
+            System.out.println("Creación de hilos que loguean de forma recurrente en Wildfly");
+            System.out.println("Ingrese intervalo en segundos");
+            msInterval = new Scanner(System.in).nextInt();
+            System.out.println("Ingrese mensaje");
+            message = new Scanner(System.in).nextLine();
+            state = true;
+            return new RemoteEJBClient(msInterval, message, state, opcion);
+    }
+    private static LogSender lookupLogSenderCORE() throws NamingException{
+        final Hashtable jndiProperties = new Hashtable();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+        jndiProperties.put(Context.PROVIDER_URL, "remote+http://127.0.0.1:8080");
+        jndiProperties.put(Context.SECURITY_PRINCIPAL, "appCOREnicolas");
+        jndiProperties.put(Context.SECURITY_CREDENTIALS, "48283674");
+        final Context context = new InitialContext(jndiProperties);
+        // The app name is the application name of the deployed EJBs. This is typically the ear name
+        // without the .ear suffix. However, the application name could be overridden in the application.xml of the
+        // EJB deployment on the server.
+        // Since we haven't deployed the application as a .ear, the app name for us will be an empty string
+        final String moduleName = "EJBService";
+        // AS7 allows each deployment to have an (optional) distinct name. We haven't specified a distinct name for
+        // our EJB deployment, so this is an empty string
+        final String beanName = LogBean.class.getSimpleName();
+        // the remote view fully qualified class name
+        final String viewClassName = LogSender.class.getName();
+        // let's do the lookup
+        String retorno = "ejb:/"+ moduleName + "/" + beanName + "!" + viewClassName;
+        System.out.println(retorno);
+        return (LogSender) context.lookup(retorno);
+    }
+    private static LogSender lookupLogSenderEXT() throws NamingException {
             final Hashtable jndiProperties = new Hashtable();
             jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
             jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
-            jndiProperties.put(Context.PROVIDER_URL, "remote+http://127.0.0.1:8080");
-            jndiProperties.put(Context.SECURITY_PRINCIPAL, "appCOREnicolas");
+            jndiProperties.put(Context.PROVIDER_URL, "remote+http://127.0.0.1:9080");
+            jndiProperties.put(Context.SECURITY_PRINCIPAL, "appEXTnicolas");
             jndiProperties.put(Context.SECURITY_CREDENTIALS, "48283674");
             final Context context = new InitialContext(jndiProperties);
             // The app name is the application name of the deployed EJBs. This is typically the ear name
@@ -71,13 +116,13 @@ public class RemoteEJBClient {
             final String moduleName = "EJBService";
             // AS7 allows each deployment to have an (optional) distinct name. We haven't specified a distinct name for
             // our EJB deployment, so this is an empty string
-            final String beanName = CalculatorBean.class.getSimpleName();
+            final String beanName = LogBean.class.getSimpleName();
             // the remote view fully qualified class name
-            final String viewClassName = RemoteCalculator.class.getName();
+            final String viewClassName = LogSender.class.getName();
             // let's do the lookup
             String retorno = "ejb:/"+ moduleName + "/" + beanName + "!" + viewClassName;
             System.out.println(retorno);
-            return (RemoteCalculator) context.lookup(retorno);
+            return (LogSender) context.lookup(retorno);
 
 
 
