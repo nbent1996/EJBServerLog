@@ -25,13 +25,16 @@ public class RemoteEJBClient extends Thread implements Runnable{
     private static final String HTTP = "http";
 
     public static void main(String[] args) throws Exception {
-        boolean bandera = false;
-        RemoteEJBClient rEJB = tomarDatos(); /*Tomo datos*/
-        if(!bandera){
+       //rutinaLogsRecurrentes();
+        rutinaLogIndividual();
+    }
+    public static void rutinaLogsRecurrentes() throws Exception{
+        RemoteEJBClient rEJB = tomarDatosRecurrente(); /*Tomo datos*/
+
+        logger = new ArrayList();
         logger.add(lookupLogSenderCORE()); /*Creo la conexion al CORE*/
         logger.add(lookupLogSenderEXT()); /*Creo la conexion al EXT*/
-        bandera = true;
-        }
+
         Thread tr = new Thread(rEJB);
         tr.start();
         while(rEJB.state){
@@ -41,6 +44,26 @@ public class RemoteEJBClient extends Thread implements Runnable{
                 rEJB.state=false;
             }
         }
+    }
+    public static void rutinaLogIndividual() throws Exception{
+        tomarDatosIndividual(); /*Tomo datos*/
+
+        logger = new ArrayList();
+        logger.add(lookupLogSenderCORE()); /*Creo la conexion al CORE*/
+        logger.add(lookupLogSenderEXT()); /*Creo la conexion al EXT*/
+
+        boolean bandera = true;
+        while(bandera){
+            tomarDatosIndividual();
+            System.out.println("Desea enviar otro mensaje al server?\n1 - Si\n2 - No");
+            int opcion = new Scanner(System.in).nextInt();
+            if(opcion==1){
+                bandera = true;
+            } else if (opcion==2){
+                bandera = false;
+            }
+        }
+
     }
     public RemoteEJBClient(int msInterval, String message, boolean state, int opcion){
         this.msInterval = msInterval;
@@ -61,13 +84,13 @@ public class RemoteEJBClient extends Thread implements Runnable{
                 }
             }
     }
-    private static RemoteEJBClient tomarDatos() throws NamingException {
+    private static RemoteEJBClient tomarDatosRecurrente() throws NamingException {
             int opcion, msInterval;
             String message;
             boolean state;
             System.out.println("Seleccione instancia:\n" +
-                    "1 - Master.\n" +
-                    "2 - Slave");
+                    "1 - Master1\n" +
+                    "2 - Master2");
             opcion = new Scanner(System.in).nextInt();
 
             System.out.println("Creación de hilos que loguean de forma recurrente en Wildfly");
@@ -77,6 +100,15 @@ public class RemoteEJBClient extends Thread implements Runnable{
             message = new Scanner(System.in).nextLine();
             state = true;
             return new RemoteEJBClient(msInterval, message, state, opcion);
+    }
+    private static void tomarDatosIndividual() throws NamingException {
+        String message;
+        logger = new ArrayList();
+        logger.add(lookupLogSenderCORE()); /*Creo la conexion al CORE*/
+        logger.add(lookupLogSenderEXT()); /*Creo la conexion al EXT*/
+        System.out.println("Ingrese el mensaje a enviar a la instancia:");
+        message = new Scanner(System.in).nextLine();
+        logger.get(0).infiniteLog(message);
     }
     private static LogSender lookupLogSenderCORE() throws NamingException{
         final Hashtable jndiProperties = new Hashtable();
