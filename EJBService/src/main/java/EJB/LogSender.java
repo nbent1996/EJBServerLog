@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package Stateless;
+package EJB;
 
 /**
  * @author Jaikiran Pai
  */
 public interface LogSender {
-    public void infiniteLog(String message);
+    public void Log(String message);
 }

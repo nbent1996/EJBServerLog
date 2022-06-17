@@ -1,11 +1,14 @@
-package Stateless;
+package EJB;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.ejb.Remote;
+
 import javax.ejb.Stateless;
+
+
 @Stateless
 @Remote(LogSender.class)
 public class LogBean implements LogSender {
@@ -13,7 +16,7 @@ public class LogBean implements LogSender {
     private Level logInfo = Level.forName("INFO", 550);
 
     @Override
-    public void infiniteLog(String message) {
+    public void Log(String message) {
         log.log(logInfo, message);
     }
 
