@@ -17,18 +17,7 @@ public class RemoteEJBClient extends Thread implements Runnable{
     private int opcion, msInterval;
     private boolean state;
     private static ArrayList<LogSender> logger = new ArrayList();
-    private static ArrayList<String> usuariosConexion = new ArrayList();
-    private static ArrayList<String> urlsConexion = new ArrayList();
-
     public static void main(String[] args) throws Exception {
-
-        /*Cargar datos de conexion*/
-      usuariosConexion.add("appCOREnicolas");
-       usuariosConexion.add("appEXTnicolas");
-
-       urlsConexion.add("remote+http://127.0.0.1:8080");
-       urlsConexion.add("remote+http://127.0.0.1:9080");
-
         //rutinaLogsRecurrentes();
         rutinaLogIndividual();
 
@@ -37,8 +26,7 @@ public class RemoteEJBClient extends Thread implements Runnable{
         RemoteEJBClient rEJB = tomarDatosRecurrente(); /*Tomo datos*/
 
         logger = new ArrayList();
-        logger.add(lookupLogSender(1)); /*Creo la conexion al CORE*/
-        logger.add(lookupLogSender(3)); /*Creo la conexion al CORE2*/
+        logger.add(lookupLogSender()); /*Creo la conexion al CORE-ha*/
 
         Thread tr = new Thread(rEJB);
         tr.start();
@@ -54,8 +42,7 @@ public class RemoteEJBClient extends Thread implements Runnable{
         tomarDatosIndividual(); /*Tomo datos*/
 
         logger = new ArrayList();
-        logger.add(lookupLogSender(1)); /*Creo la conexion al CORE*/
-        logger.add(lookupLogSender(3)); /*Creo la conexion al CORE2*/
+        logger.add(lookupLogSender()); /*Creo la conexion al CORE-HA*/
 
         boolean bandera = true;
         while(bandera){
@@ -108,45 +95,21 @@ public class RemoteEJBClient extends Thread implements Runnable{
     private static void tomarDatosIndividual() throws NamingException {
         String message;
         logger = new ArrayList();
-        logger.add(lookupLogSender(1)); /*Creo la conexion al CORE*/
-        logger.add(lookupLogSender(3)); /*Creo la conexion al CORE2*/
+        logger.add(lookupLogSender()); /*Creo la conexion al CORE HA*/
         System.out.println("Ingrese el mensaje a enviar a la instancia:");
         message = new Scanner(System.in).nextLine();
         try{
             logger.get(0).Log(message);
         }catch(RequestSendFailedException ex){
-            System.out.println("ERROR DE CONEXION AL NODO MASTER1");
-            try{
-                logger.get(1).Log(message);
-            }catch(RequestSendFailedException e){
-                System.out.println("ERROR DE CONEXION AL NODO MASTER2, SERVICIO CAIDO");
-            }
+            System.out.println("ERROR DE CONEXION A LOS NODOS, SERVICIO CAIDO");
         }
     }
-    private static LogSender lookupLogSender(int modo) throws NamingException, RequestSendFailedException {
-        String url ="";
-        String user ="";
-        switch(modo){
-            case 1: /*MODO CORE*/
-                url = urlsConexion.get(0);
-                user = usuariosConexion.get(0);
-            break;
-
-            case 2: /*MODO EXT*/
-                url = urlsConexion.get(1);
-                user = usuariosConexion.get(1);
-            break;
-
-            case 3: /*MODO CORE2*/
-                url = urlsConexion.get(1);
-                user = usuariosConexion.get(0);
-            break;
-        }
+    private static LogSender lookupLogSender() throws NamingException, RequestSendFailedException {
         final Hashtable jndiProperties = new Hashtable();
         jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
         jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
-        jndiProperties.put(Context.PROVIDER_URL, url);
-        jndiProperties.put(Context.SECURITY_PRINCIPAL, user);
+        jndiProperties.put(Context.PROVIDER_URL, "remote+http://127.0.0.1:8080, remote+http://127.0.0.1:9080");
+        jndiProperties.put(Context.SECURITY_PRINCIPAL, "appCOREnicolas");
         jndiProperties.put(Context.SECURITY_CREDENTIALS, "48283674");
         final Context context = new InitialContext(jndiProperties);
         // The app name is the application name of the deployed EJBs. This is typically the ear name
