@@ -16,18 +16,44 @@ public class RemoteEJBClient extends Thread implements Runnable{
     private String message;
     private int opcion, msInterval;
     private boolean state;
-    private static ArrayList<LogSender> logger = new ArrayList();
+    private static LogSender logger;
+
+    public RemoteEJBClient(int msInterval, String message, boolean state, int opcion){
+        this.msInterval = msInterval;
+        this.message = message;
+        this.state = state;
+        this.opcion = opcion;
+    }
+
+
     public static void main(String[] args) throws Exception {
         //rutinaLogsRecurrentes();
         rutinaLogIndividual();
 
     }
+    /*Logs enviados por el usuario*/
+    public static void rutinaLogIndividual() throws Exception{
+        logger = lookupLogSender(); /*Creo la conexion al CORE-HA*/
+        while(true){
+            String message;
+            System.out.println("Ingrese el mensaje a enviar a la instancia o -1 para finalizar ejecución:");
+            message = new Scanner(System.in).nextLine();
+            if(message.equals("-1")){
+                return;
+            }
+            try{
+                logger.Log(message);
+            }catch(RequestSendFailedException ex){
+                System.out.println("ERROR DE CONEXION");
+        }
+        }
+    }
+    /*Logs enviados por el usuario*/
+
+    /*Logs Recurrentes*/
     public static void rutinaLogsRecurrentes() throws Exception{
+        logger = lookupLogSender(); /*Creo la conexion al CORE-HA*/
         RemoteEJBClient rEJB = tomarDatosRecurrente(); /*Tomo datos*/
-
-        logger = new ArrayList();
-        logger.add(lookupLogSender()); /*Creo la conexion al CORE-ha*/
-
         Thread tr = new Thread(rEJB);
         tr.start();
         while(rEJB.state){
@@ -38,38 +64,11 @@ public class RemoteEJBClient extends Thread implements Runnable{
             }
         }
     }
-    public static void rutinaLogIndividual() throws Exception{
-        tomarDatosIndividual(); /*Tomo datos*/
-
-        logger = new ArrayList();
-        logger.add(lookupLogSender()); /*Creo la conexion al CORE-HA*/
-
-        boolean bandera = true;
-        while(bandera){
-            tomarDatosIndividual();
-            System.out.println("Desea enviar otro mensaje al server?\n1 - Si\n2 - No");
-            int opcion = new Scanner(System.in).nextInt();
-            if(opcion==1){
-                bandera = true;
-            } else if (opcion==2){
-                bandera = false;
-            }
-        }
-
-    }
-    public RemoteEJBClient(int msInterval, String message, boolean state, int opcion){
-        this.msInterval = msInterval;
-        this.message = message;
-        this.state = state;
-        this.opcion = opcion;
-    }
-
-    /*Generar un nuevo hilo*/
     @Override
     public void run(){
             while (state) {
                 try {
-                logger.get(opcion-1).Log(message);
+                logger.Log(message);
                 sleep(msInterval*1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -92,18 +91,9 @@ public class RemoteEJBClient extends Thread implements Runnable{
             state = true;
             return new RemoteEJBClient(msInterval, message, state, opcion);
     }
-    private static void tomarDatosIndividual() throws NamingException {
-        String message;
-        logger = new ArrayList();
-        logger.add(lookupLogSender()); /*Creo la conexion al CORE HA*/
-        System.out.println("Ingrese el mensaje a enviar a la instancia:");
-        message = new Scanner(System.in).nextLine();
-        try{
-            logger.get(0).Log(message);
-        }catch(RequestSendFailedException ex){
-            System.out.println("ERROR DE CONEXION A LOS NODOS, SERVICIO CAIDO");
-        }
-    }
+    /*Logs Recurrentes*/
+
+    /*Invocacion al EJB*/
     private static LogSender lookupLogSender() throws NamingException, RequestSendFailedException {
         final Hashtable jndiProperties = new Hashtable();
         jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
@@ -112,20 +102,14 @@ public class RemoteEJBClient extends Thread implements Runnable{
         jndiProperties.put(Context.SECURITY_PRINCIPAL, "appCOREnicolas");
         jndiProperties.put(Context.SECURITY_CREDENTIALS, "48283674");
         final Context context = new InitialContext(jndiProperties);
-        // The app name is the application name of the deployed EJBs. This is typically the ear name
-        // without the .ear suffix. However, the application name could be overridden in the application.xml of the
-        // EJB deployment on the server.
-        // Since we haven't deployed the application as a .ear, the app name for us will be an empty string
         final String moduleName = "EJBService";
-        // AS7 allows each deployment to have an (optional) distinct name. We haven't specified a distinct name for
-        // our EJB deployment, so this is an empty string
         final String beanName = LogBean.class.getSimpleName();
-        // the remote view fully qualified class name
         final String viewClassName = LogSender.class.getName();
-        // let's do the lookup
         String retorno = "ejb:/"+ moduleName + "/" + beanName + "!" + viewClassName;
         System.out.println(retorno);
         return (LogSender) context.lookup(retorno);
     }
+    /*Invocacion al EJB*/
+
 
 }
